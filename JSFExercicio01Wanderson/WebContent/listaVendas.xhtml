@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+	<title>Cadastro</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:commandLink value="Cadastro" action="cadastroVendas.xhtml" immediate="true" />
+		<h1>Relação de Vendas</h1>
+		
+		<h:messages />
+		<h:dataTable border="1" value="#{vendasControllerWanderson.lista}" var="vendas">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{vendas.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Cliente" />
+				</f:facet>
+				<h:outputText value="#{vendas.cliente}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Produto" />
+				</f:facet>
+				<h:outputText value="#{vendas.produto}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor do Produto" />
+				</f:facet>
+				<h:outputText value="#{vendas.valorVenda}">
+				 <f:convertNumber pattern="#,##0.00" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data da Venda" />
+				</f:facet>
+				<h:outputText value="#{vendas.dataVenda}">
+				  <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ação" />
+				</f:facet>
+				<h:commandButton value="Editar" action="#{vendasControllerWanderson.editar}">
+					<f:setPropertyActionListener value="#{vendas}" target="#{vendasControllerWanderson.vendas}" />
+				</h:commandButton>
+				<h:commandButton value="Excluir" action="#{vendasControllerWanderson.excluir}" onclick="return confirm('Deseja Excluir?')">
+					<f:setPropertyActionListener value="#{vendas}" target="#{vendasControllerWanderson.vendas}"/>
+				</h:commandButton>
+			</h:column>
+			
+		</h:dataTable>
+	</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Cadastro de Vendas</title>
+</h:head>
+
+<h:body>
+	<h:form>
+	<h:commandLink value="Mostrar Vendas" action="listaVendas.xhtml" immediate="true" />
+		<h1>Cadastro de Vendas</h1>
+		<h:messages />
+		<h:panelGrid columns="2">
+		
+			<h:outputText value="Cliente: *" />
+			<h:inputText value="#{vendasControllerWanderson.vendas.cliente}"
+				required="true"
+				requiredMessage="Favor Informar o Nome do Cliente!">
+				<f:validateLength maximum="60"/>
+				</h:inputText>
+
+				
+			<h:outputText value="Produto: *" />
+			<h:inputText value="#{vendasControllerWanderson.vendas.produto}"
+				required="true"
+				requiredMessage="Favor Informar o Nome do Cliente!" >
+				<f:validateLength maximum="60"/>
+				</h:inputText>
+			
+			<h:outputText value="Data da Venda: *" />
+			<h:inputText value="#{vendasControllerWanderson.vendas.dataVenda}"
+				required="true"
+				requiredMessage="Favor informar data da venda!">
+				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+			</h:inputText>
+
+			<h:outputText value="Valor do produto: *" />
+			<h:inputText value="#{vendasControllerWanderson.vendas.valorVenda}"
+				required="true"
+				requiredMessage="Valor do procedimento deve ser informado!">
+				<f:validateDoubleRange minimum="0.1" maximum="800"/>
+				</h:inputText>
+			
+			<h:commandButton value="Salvar" action="#{vendasControllerWanderson.salvar}" />
+			<h:commandButton value="Limpar" action="cadastroVendas.xhtml" 
+				actionListener="#{vendasControllerWanderson.limparCampos}" immediate="true"/>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+
+</html>
